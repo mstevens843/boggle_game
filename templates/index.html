@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boggle Game</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  <!-- Added Axios -->
+</head>
+<body>
+    <h1>Boggle Game</h1>
+
+    <div id="board">
+        {% for row in board %}
+            <div class="row">
+                {% for letter in row %}
+                    <span class="letter">{{ letter }}</span>
+                {% endfor %}
+            </div>
+        {% endfor %}
+    </div>
+
+    <form id="word-form">
+        <input type="text" id="word" autocomplete="off">
+        <button type="submit">Submit Word</button>
+    </form>
+
+    <p id="result"></p>
+    <p>Score: <span id="score">0</span></p>
+    <p>High Score: <span id="highscore">{{ session.get('highscore', 0) }}</span></p>
+    <p>Times Played: <span id="times_played">{{ session.get('times_played', 0) }}</span></p>
+    <p id="timer">Time Left: 60</p>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    
+</body>
+</html>
